@@ -10,22 +10,21 @@ struct ListNode {
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        ListNode* temp = head;
-        int count = 1;
-        while (temp->next != NULL) {
-            count++;
-            temp = temp->next;
+        ListNode* p1 = head;
+        ListNode* p2 = head;
+        while(true)
+        {
+            if(p2->next==NULL)
+            {
+                return p1;
+            }
+            else if((p2->next)->next==NULL)
+            {
+                return p1->next;
+            }
+            p1=p1->next;
+            p2=p2->next;
+            p2=p2->next;
         }
-        int middle = 0;
-        if (count % 2 == 0) {
-            middle = count / 2 + 1;
-        } else {
-            middle = ceil(double(count) / 2);
-        }
-        temp = head;
-        for (int i = 0; i < middle-1; i++) {
-            temp = temp->next;
-        }
-        return temp;
     }
 };
